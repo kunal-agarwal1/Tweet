@@ -32,6 +32,10 @@ loginButton.layer.cornerRadius = loginButton.frame.height * 0.5
             defaults.set(true, forKey: "isLoggedIn")
             self.performSegue(withIdentifier: "LogInToHome", sender: self)
         }, failure: { (Error) in
+            
+            let alert = UIAlertController(title: "Could not Log In", message: "Something caused the login to fail. Try again later.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
             print("Could Not Log in")
         })
     }

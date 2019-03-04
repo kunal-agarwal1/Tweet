@@ -35,6 +35,9 @@ class HomeTableViewController: UITableViewController {
             self.myRefreshControl.endRefreshing()
 
         }, failure: { (Error) in
+            let alert = UIAlertController(title: "Could not retrieve Tweets", message: "Something caused the connection to fail. Please try again later.", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+            self.present(alert, animated: true)
             print("could not retrieve tweets")
         })
     }
@@ -95,7 +98,15 @@ class HomeTableViewController: UITableViewController {
             cell.backgroundColor = UIColor.white
         }
         cell.nameLabel.text = (user["name"] as! String)
-        cell.tweetLabel.text = (tweetArray[indexPath.row]["text"] as! String)
+        
+        let tweetext = (tweetArray[indexPath.row]["text"] as! String)
+        if let index = tweetext.range(of: "http", options: .backwards)?.lowerBound
+        {
+            cell.tweetLabel.text = String(tweetext[tweetext.startIndex..<index])
+        }
+        else{
+        cell.tweetLabel.text = tweetext
+        }
         return cell;
     }
     
