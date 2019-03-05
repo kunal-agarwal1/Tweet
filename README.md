@@ -41,5 +41,5 @@ The following **aesthetic** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='hhttps://streamable.com/s/ui2vn/dtatpm.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://streamable.com/s/ui2vn/dtatpm.mp4' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
