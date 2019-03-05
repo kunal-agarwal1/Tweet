@@ -19,24 +19,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="TwitterLogoBlue" translatesAutoresizingMaskIntoConstraints="NO" id="0mo-4F-col">
-                                <rect key="frame" x="25" y="100" width="326" height="326"/>
+                                <rect key="frame" x="24.5" y="100.5" width="326" height="326"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="326" id="dqu-Yc-N0k"/>
                                     <constraint firstAttribute="width" constant="326" id="vJc-f3-1J0"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Twitter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zle-vA-IQX">
-                                <rect key="frame" x="124" y="239" width="128" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="128" id="Rsw-Ix-URE"/>
-                                    <constraint firstAttribute="height" constant="48" id="o7D-dY-eKC"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="40"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f5A-1l-74h">
-                                <rect key="frame" x="36" y="412" width="303" height="65"/>
+                                <rect key="frame" x="36" y="411.5" width="303" height="65"/>
                                 <color key="backgroundColor" red="0.11372549019607843" green="0.5490196078431373" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="303" id="KQT-Ux-VQa"/>
@@ -50,6 +40,16 @@
                                     <action selector="onLogin:" destination="chQ-Px-W3c" eventType="touchUpInside" id="MYd-0Y-Hsq"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tweet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zle-vA-IQX">
+                                <rect key="frame" x="137" y="239" width="101" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="101" id="Rsw-Ix-URE"/>
+                                    <constraint firstAttribute="height" constant="48" id="o7D-dY-eKC"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="MarkerFelt-Thin" family="Marker Felt" pointSize="40"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
