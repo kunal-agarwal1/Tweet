@@ -41,5 +41,7 @@ The following **aesthetic** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
+<div style="width:100%;height:0px;position:relative;padding-bottom:205.096%;"><iframe src="https://streamable.com/s/ui2vn/dtatpm" frameborder="0" width="100%" height="100%" allowfullscreen style="width:100%;height:100%;position:absolute;left:0px;top:0px;overflow:hidden;"></iframe></div>
+
 <img src='https://streamable.com/ui2vn' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
