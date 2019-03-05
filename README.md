@@ -41,5 +41,5 @@ The following **aesthetic** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://giphy.com/gifs/1zlTTztFtzfNJR9Hdq' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://media.giphy.com/media/1zlTTztFtzfNJR9Hdq/giphy.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
