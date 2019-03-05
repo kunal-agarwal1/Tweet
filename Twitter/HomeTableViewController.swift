@@ -79,7 +79,6 @@ class HomeTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "TweetsCell", for: indexPath) as! TweetsCell
         let user = tweetArray[indexPath.row]["user"] as! NSDictionary
-        
         let imageUrl = URL(string: (user["profile_image_url_https"] as! String))
         let data = try? Data(contentsOf: imageUrl!)
         
@@ -107,6 +106,37 @@ class HomeTableViewController: UITableViewController {
         else{
         cell.tweetLabel.text = tweetext
         }
+        
+        cell.userIdLabel.text = "@" + (user["screen_name"] as! String)
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "E MMM dd HH:mm:ss Z yyyy"
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+        
+        let timeStr = (tweetArray[indexPath.row]["created_at"] as! String)
+        print(timeStr)
+   
+        let postdate = dateFormatter.date(from:timeStr)!
+            let now = Date()
+        let diffInDays = Calendar.current.dateComponents([.day], from: postdate , to: now).day!
+        cell.timeLabel.text = "\(diffInDays)d"
+        if diffInDays == 0{
+            let diffInHours = Calendar.current.dateComponents([.hour], from: postdate , to: now).hour!
+            cell.timeLabel.text = "\(diffInHours)h"
+        if diffInHours == 0{
+            let diffInMins = Calendar.current.dateComponents([.minute], from: postdate , to: now).minute!
+            cell.timeLabel.text = "\(diffInMins)m"
+            if diffInMins == 0{
+                let diffInSecs = Calendar.current.dateComponents([.second], from: postdate , to: now).second!
+                cell.timeLabel.text = "\(diffInSecs)s"
+                 }
+            }
+        }
+        print(cell.timeLabel.text!)
+
+        cell.retweetLabel.text = "\(tweetArray[indexPath.row]["retweet_count"] as! Int)"
+        cell.favorLabel.text = "\(tweetArray[indexPath.row]["favorite_count"] as?Int ?? 0)"
+        
         return cell;
     }
     
