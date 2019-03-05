@@ -23,6 +23,8 @@ The following **additional** features are implemented:
 
 - [x] Alert to make sure the user doesn't log out accidentally.
 - [x] Alert that shows when the login fails or initial tweets are unable to be displayed.
+- [x] User can view tweets with the tweets' retweets, favourites..
+- [x] Uses date() to calculate the time since each tweet was posted and displays it.
 
 The following **aesthetic** features are implemented:
 
@@ -30,6 +32,8 @@ The following **aesthetic** features are implemented:
 - [x] Tweet view cells are alternately colored instead of having a separator.
 - [x] Tweet view cells have circular profile pics.
 - [x] Removal of the link present at the end of a tweet string.
+- [x] Icons for reply, retweets and favourites.
+
 
 
 
@@ -37,5 +41,5 @@ The following **aesthetic** features are implemented:
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://streamable.com/ui2vn' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
