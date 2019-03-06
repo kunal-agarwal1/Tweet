@@ -6,6 +6,7 @@
 //  Copyright © 2019 Dan. All rights reserved.
 //
 
+
 import UIKit
 
 class HomeTableViewController: UITableViewController {
@@ -13,13 +14,17 @@ class HomeTableViewController: UITableViewController {
     var tweetArray = [NSDictionary]()
     var numberOfTweets = Int()
     let myRefreshControl = UIRefreshControl()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         numberOfTweets = 20
         loadTweets()
         myRefreshControl.addTarget(self, action: #selector(loadTweets), for: .valueChanged)
         tableView.refreshControl = myRefreshControl
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        loadTweets()
     }
 
     @objc func loadTweets()
@@ -65,7 +70,6 @@ class HomeTableViewController: UITableViewController {
     }
     
     // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         if(indexPath.row == (tweetArray.count - 1)){
             loadMoreTweets()
@@ -133,6 +137,11 @@ class HomeTableViewController: UITableViewController {
             }
         }
         print(cell.timeLabel.text!)
+        
+        cell.tweetID = tweetArray[indexPath.row]["id"] as! Int
+        
+        cell.setFavorited(tweetArray[indexPath.row]["favorited"] as! Bool)
+        cell.setRetweeted(tweetArray[indexPath.row]["retweeted"] as! Bool)
 
         cell.retweetLabel.text = "\(tweetArray[indexPath.row]["retweet_count"] as! Int)"
         cell.favorLabel.text = "\(tweetArray[indexPath.row]["favorite_count"] as?Int ?? 0)"
@@ -163,3 +172,14 @@ class HomeTableViewController: UITableViewController {
    
 
 }
+/**
+ LINKS TO GIF/MP4 STORY
+ 
+ https://media.giphy.com/media/1zlTTztFtzfNJR9Hdq/giphy.gif
+ 
+ https://gph.is/g/aX8zYOa
+ 
+ https://streamable.com/s/ui2vn/fppxci
+ 
+ https://giphy.com/gifs/1zlTTztFtzfNJR9Hdq/fullscreen
+ */
