@@ -43,6 +43,8 @@ class HomeTableViewController: UITableViewController {
             let alert = UIAlertController(title: "Could not retrieve Tweets", message: "Something caused the connection to fail. Please try again later.", preferredStyle: .alert)
             alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
             self.present(alert, animated: true)
+            self.myRefreshControl.endRefreshing()
+
             print("could not retrieve tweets")
         })
     }
