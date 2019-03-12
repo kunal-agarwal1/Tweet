@@ -12,6 +12,7 @@ import UIKit
 class HomeTableViewController: UITableViewController {
 
     var tweetArray = [NSDictionary]()
+    var heightArray = [Int]()
     var numberOfTweets = Int()
     let myRefreshControl = UIRefreshControl()
     override func viewDidLoad() {
@@ -87,7 +88,8 @@ class HomeTableViewController: UITableViewController {
         let user = tweetArray[indexPath.row]["user"] as! NSDictionary
         let imageUrl = URL(string: (user["profile_image_url_https"] as! String))
         let data = try? Data(contentsOf: imageUrl!)
-        
+        cell.mediaNo = 0
+        cell.extraHeight = 0
         if let imageData = data {
             cell.profileImage.image = UIImage(data: imageData)
             cell.profileImage.layer.cornerRadius =  cell.profileImage.frame.height * 0.5
@@ -120,7 +122,6 @@ class HomeTableViewController: UITableViewController {
         dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
         
         let timeStr = (tweetArray[indexPath.row]["created_at"] as! String)
-        print(timeStr)
    
         let postdate = dateFormatter.date(from:timeStr)!
             let now = Date()
@@ -138,7 +139,6 @@ class HomeTableViewController: UITableViewController {
                  }
             }
         }
-        print(cell.timeLabel.text!)
         
         cell.tweetID = tweetArray[indexPath.row]["id"] as! Int
         
@@ -147,8 +147,50 @@ class HomeTableViewController: UITableViewController {
 
         cell.retweetLabel.text = "\(tweetArray[indexPath.row]["retweet_count"] as! Int)"
         cell.favorLabel.text = "\(tweetArray[indexPath.row]["favorite_count"] as?Int ?? 0)"
+        if let entity  = tweetArray[indexPath.row]["extended_entities"] as? NSDictionary{
+        if let media = entity["media"] as? [NSDictionary]{
+            let frame = tableView.rectForRow(at: indexPath)
+            print(frame.size.height)
+            cell.mediaNo = media.count
+            print(media)
+             if(heightArray.count <= indexPath.row){
+            heightArray.insert(150, at: indexPath.row);
+            }
+            for medi in media
+            {
+        let mediaUrl = URL(string: medi["media_url_https"] as! String)
+            let size = medi["sizes"] as! NSDictionary
+            let thumb = size["medium"] as! NSDictionary
+            var h =  thumb["h"] as! Int
+            var w =  thumb["w"] as! Int
+                let screenWid = Int(UIScreen.main.bounds.width/2)
+                h = Int((CGFloat(h)/CGFloat(w)) * CGFloat(screenWid))
+                w = screenWid
+
+            cell.extraHeight = cell.extraHeight + h
+
+            let data = try? Data(contentsOf: mediaUrl!)
+ 
+            if let imageData = data {
+                cell.mediaImage.image = UIImage(data: imageData)
+                cell.mediaImage.clipsToBounds = true
+                cell.mediaImage.frame = CGRect(x: screenWid-w/2, y: 1, width: w, height: h)
+            }
+        }
+            heightArray[indexPath.row] = 150 + cell.extraHeight
+            }
         
+    }
         return cell;
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        if(heightArray.count <= indexPath.row){
+            heightArray.insert(150, at: indexPath.row);
+            
+        }
+        return CGFloat(heightArray[indexPath.row]);//Choose your custom row height
     }
     
     @IBAction func onLogout(_ sender: Any) {

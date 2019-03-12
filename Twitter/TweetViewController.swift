@@ -10,6 +10,7 @@ import UIKit
 
 class TweetViewController: UIViewController, UITextViewDelegate {
 
+    @IBOutlet weak var profileImage: UIImageView!
     @IBOutlet weak var charCountLabel: UILabel!
     @IBOutlet weak var tweetTextView: UITextView!
     
@@ -20,7 +21,31 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         tweetTextView.becomeFirstResponder()
         tweetTextView.delegate = self
         charCountLabel.text = "\(characterLimit)";
+        
+        tweetTextView.layer.cornerRadius = 8;
+        tweetTextView.layer.borderColor = UIColor.gray.cgColor
+        tweetTextView.layer.borderWidth = 1;
+        loadData()
         // Do any additional setup after loading the view.
+    }
+    @objc func loadData()
+    {
+        let url = "https://api.twitter.com/1.1/account/verify_credentials.json"
+        let parameters = ["skip_status" : true]
+        TwitterAPICaller.client?.getAccount(url: url, parameters: parameters, success: { (profileInfo: NSDictionary) in
+                  let imageUrl = URL(string: (profileInfo["profile_image_url_https"] as! String))
+            let data = try? Data(contentsOf: imageUrl!)
+            
+            if let imageData = data {
+                self.profileImage.image = UIImage(data: imageData)
+                self.profileImage.layer.cornerRadius =  self.profileImage.frame.height * 0.5
+                self.profileImage.clipsToBounds = true
+                
+            }
+        }, failure: { (Error) in
+            self.profileImage.image = (UIImage(named: "profile-icon"))
+            print("could not retrieve profile image")
+        })
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -30,7 +55,6 @@ class TweetViewController: UIViewController, UITextViewDelegate {
         if(text.count == 0 && newText != 0){
         newText = newText - 1;
         }
-        print(textView.text + "q\(text.count)")
         charCountLabel.text = "\(characterLimit - newText)";
         // The new text should be allowed? True/False
         return newText < characterLimit

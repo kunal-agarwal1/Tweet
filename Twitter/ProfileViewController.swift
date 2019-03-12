@@ -29,7 +29,6 @@ class ProfileViewController: UIViewController {
         let url = "https://api.twitter.com/1.1/account/verify_credentials.json"
         let parameters = ["skip_status" : true]
         TwitterAPICaller.client?.getAccount(url: url, parameters: parameters, success: { (profileInfo: NSDictionary) in
-            print(profileInfo)
             self.nameLabel.text = profileInfo["name"] as? String
             self.tagLabel.text = "@" + (profileInfo["screen_name"] as! String)
             self.followersLabel.text = "\(profileInfo["followers_count"] as! Int)"

@@ -10,6 +10,7 @@ import UIKit
 
 class TweetsCell: UITableViewCell {
 
+    @IBOutlet weak var mediaImage: UIImageView!
     @IBOutlet weak var favorLabel: UILabel!
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var userIdLabel: UILabel!
@@ -23,7 +24,9 @@ class TweetsCell: UITableViewCell {
     var tweetID = Int()
     var favorited = false
     var retweeted = false
-
+    var mediaNo = Int()
+    var extraHeight = Int()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
